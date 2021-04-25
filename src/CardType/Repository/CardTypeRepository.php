@@ -106,7 +106,7 @@ class CardTypeRepository extends ServiceEntityRepository
                 throw new \Exception('Card not found', Response::HTTP_NOT_FOUND);
             }
 
-            if ($card->getImmortal() === true) {
+            if ($card->getImmortal()) {
                 throw new \Exception("You can't kill an immortal card, you silly", Response::HTTP_I_AM_A_TEAPOT);
             }
 
@@ -133,32 +133,4 @@ class CardTypeRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Card[] Returns an array of Card objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Card
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

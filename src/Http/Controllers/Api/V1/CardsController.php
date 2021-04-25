@@ -58,11 +58,11 @@ class CardsController extends AbstractController
             ]);
 
         } catch (\Throwable $e) {
-            $status_code = !empty($e->getCode()) ? $e->getCode() : Response::HTTP_UNPROCESSABLE_ENTITY;
+            $statusCode = !empty($e->getCode()) ? $e->getCode() : Response::HTTP_UNPROCESSABLE_ENTITY;
             return $this->json([
-                'error' => Response::$statusTexts[$status_code],
+                'error' => Response::$statusTexts[$statusCode],
                 'message' => $e->getMessage()
-            ], $status_code);
+            ], $statusCode);
         }
     }
 
@@ -82,11 +82,11 @@ class CardsController extends AbstractController
             ]);
 
         } catch (\Throwable $e) {
-            $status_code = !empty($e->getCode()) ? $e->getCode() : Response::HTTP_UNPROCESSABLE_ENTITY;
+            $statusCode = !empty($e->getCode()) ? $e->getCode() : Response::HTTP_UNPROCESSABLE_ENTITY;
             return $this->json([
-                'error' => Response::$statusTexts[$status_code],
+                'error' => Response::$statusTexts[$statusCode],
                 'message' => $e->getMessage()
-            ], $status_code);
+            ], $statusCode);
         }
     }
 
@@ -107,11 +107,11 @@ class CardsController extends AbstractController
             ]);
 
         } catch (\Throwable $e) {
-            $status_code = !empty($e->getCode()) ? $e->getCode() : Response::HTTP_UNPROCESSABLE_ENTITY;
+            $statusCode = !empty($e->getCode()) ? $e->getCode() : Response::HTTP_UNPROCESSABLE_ENTITY;
             return $this->json([
-                'error' => Response::$statusTexts[$status_code],
+                'error' => Response::$statusTexts[$statusCode],
                 'message' => $e->getMessage()
-            ], $status_code);
+            ], $statusCode);
         }
     }
 
@@ -131,11 +131,11 @@ class CardsController extends AbstractController
             ]);
 
         } catch (\Throwable $e) {
-            $status_code = !empty($e->getCode()) ? $e->getCode() : Response::HTTP_UNPROCESSABLE_ENTITY;
+            $statusCode = !empty($e->getCode()) ? $e->getCode() : Response::HTTP_UNPROCESSABLE_ENTITY;
             return $this->json([
-                'error' => Response::$statusTexts[$status_code],
+                'error' => Response::$statusTexts[$statusCode],
                 'message' => $e->getMessage()
-            ], $status_code);
+            ], $statusCode);
         }
     }
 }
