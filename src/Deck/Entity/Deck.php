@@ -31,6 +31,14 @@ class Deck
     private $id;
 
     /**
+     * @ORM\Column(name="user_id", type="integer", nullable=false)
+     * @var int
+     *
+     * @Assert\Type("integer")
+     */
+    private $userId;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Deck\Entity\DeckEntry", mappedBy="deck", orphanRemoval=true)
      * @Assert\Count(
      *      max = 10,
@@ -80,6 +88,24 @@ class Deck
     }
 
     /**
+     * @return int
+     */
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
+    /**
+     * @param int $userId
+     * @return Deck
+     */
+    public function setUserId(int $userId): self
+    {
+        $this->userId = $userId;
+        return $this;
+    }
+
+    /**
      * @return Collection|DeckEntry[]
      */
     public function getDeckEntries(): Collection
@@ -89,7 +115,7 @@ class Deck
 
     /**
      * @param DeckEntry $deckEntry
-     * @return $this
+     * @return Deck
      */
     public function addDeckEntry(DeckEntry $deckEntry): self
     {

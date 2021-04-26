@@ -38,12 +38,12 @@ class DeckRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param int $userId
      * @return Deck
-     * @throws \Exception
      */
-    public function create() : Deck
+    public function create(int $userId) : Deck
     {
-        $deck = new Deck();
+        $deck = (new Deck())->setUserId($userId);
 
         $this->em->persist($deck);
         $this->em->flush();
@@ -52,15 +52,19 @@ class DeckRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param int $userId
      * @param string $deck_id
      * @param DeckAddCardRequest $dto
      * @return Deck
      * @throws \Exception
      */
-    public function addCard(string $deck_id, DeckAddCardRequest $dto) : Deck
+    public function addCard(int $userId, string $deck_id, DeckAddCardRequest $dto) : Deck
     {
         /** @var Deck $deck */
-        $deck = $this->findOneBy(['id' => $deck_id]);
+        $deck = $this->findOneBy([
+            'id' => $deck_id,
+            'userId' => $userId
+        ]);
         if (empty($deck)) {
             throw new \Exception('Deck not found', Response::HTTP_NOT_FOUND);
         }
@@ -87,15 +91,19 @@ class DeckRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param int $userId
      * @param string $deck_id
      * @param DeckRemoveCardRequest $dto
      * @return Deck
      * @throws \Exception
      */
-    public function removeCard(string $deck_id, DeckRemoveCardRequest $dto) : Deck
+    public function removeCard(int $userId, string $deck_id, DeckRemoveCardRequest $dto) : Deck
     {
         /** @var Deck $deck */
-        $deck = $this->findOneBy(['id' => $deck_id]);
+        $deck = $this->findOneBy([
+            'id' => $deck_id,
+            'userId' => $userId
+        ]);
         if (empty($deck)) {
             throw new \Exception('Deck not found', Response::HTTP_NOT_FOUND);
         }
