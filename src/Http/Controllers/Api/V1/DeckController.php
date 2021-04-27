@@ -130,7 +130,7 @@ class DeckController extends AbstractController
      * @param Request $request
      * @return Response
      *
-     * @Route("/{deck_id}", name="deck.add_entry", methods={"PATCH"})
+     * @Route("/{deck_id}/card", name="deck.add_entry", methods={"POST"})
      */
     public function addCard(string $deck_id, Request $request): Response
     {
@@ -158,7 +158,7 @@ class DeckController extends AbstractController
      * @param Request $request
      * @return Response
      *
-     * @Route("/{deck_id}", name="deck.remove_entry", methods={"DELETE"})
+     * @Route("/{deck_id}/card", name="deck.remove_entry", methods={"DELETE"})
      */
     public function removeCard(string $deck_id, Request $request): Response
     {
