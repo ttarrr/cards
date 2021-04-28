@@ -101,7 +101,6 @@ class DeckRepositoryTest extends KernelTestCase
         // Remove this card from deck
         /** @var DeckEntry $cardEntry */
         $cardEntry = $updatedDeck->getDeckEntries()->first();
-        var_dump($cardEntry->getId());
         $removeCardRequestDto = DeckRemoveCardRequest::fromState(['deckEntryId' => (string)$cardEntry->getId()]);
         $deckRepository->removeCard($userId, $deck->getId(), $removeCardRequestDto);
 
