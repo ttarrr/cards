@@ -3,6 +3,7 @@
 namespace App\CardType\Repository;
 
 use App\CardType\Entity\CardType;
+use App\Deck\Entity\DeckEntry;
 use App\Http\Requests\CardType\CardTypeCreateRequest;
 use App\Http\Requests\CardType\CardTypeUpdateRequest;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -108,6 +109,13 @@ class CardTypeRepository extends ServiceEntityRepository
 
             if ($card->getImmortal()) {
                 throw new \Exception("You can't kill an immortal card, you silly", Response::HTTP_I_AM_A_TEAPOT);
+            }
+
+            $deckEntries = $this->em->getRepository(DeckEntry::class)->findBy(['cardType' => $card_type_id]);
+
+            if (count($deckEntries) > 0) {
+                throw new \Exception("You cannot remove this type of card because 
+                                                someone is still holding it in their deck.", Response::HTTP_UNPROCESSABLE_ENTITY);
             }
 
             $this->em->remove($card);
